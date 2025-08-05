@@ -1,9 +1,15 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { 
     S3Client, 
     ListObjectsV2Command
 } from "@aws-sdk/client-s3";
 
+// --- Configure dotenv to load .env from the parent directory ---
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 // Create an S3 client
 const s3Client = new S3Client({
